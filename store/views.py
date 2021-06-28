@@ -1,6 +1,6 @@
 from store.models.product import Product
 from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models.product import Product
 from .models.category import Category
@@ -35,6 +35,12 @@ def signup(request):
         password = postData.get('password')
 
         # validation
+        value = {
+            'first_name' : first_name,
+            'last_name' : last_name,
+            'phone' : phone,
+            'email' : email
+        }
         error_message = None
 
         if (not first_name):
@@ -60,5 +66,10 @@ def signup(request):
             customer = Customer(first_name=first_name, last_name=last_name, 
                 phone=phone, email=email, password=password)
             customer.register()
+            return redirect('homepage')
         else:
-            return render(request, 'signup.html', {'error' : error_message})
+            data = {
+                'error' : error_message,
+                'values' : value
+            }
+            return render(request, 'signup.html', data)
