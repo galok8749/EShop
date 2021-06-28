@@ -5,8 +5,8 @@
     <div class="p-4 m-4">
         <div class="col-lg-5 mx-auto border rounded pt-4">
             <h3 class="alert alert-light border rounded">Create Account</h3>
-            <form action="">
-            
+            <form action="/signup/" method="POST">
+                {% csrf_token %}
                 <!-- first name -->
             <div class="form-group">
                 <label for="">First Name</label>
@@ -23,7 +23,7 @@
              <!-- phone number -->
              <div class="form-group">
                 <label for="">phone</label>
-                <input type="email" name="email" id="" class="form-control form-control-sm" placeholder="0123456789" >
+                <input type="text" name="phone" id="" class="form-control form-control-sm" placeholder="0123456789" >
               </div>
 
             <!-- email -->
