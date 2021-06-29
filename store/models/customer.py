@@ -10,3 +10,9 @@ class Customer(models.Model):
 
     def register(self):
         self.save()
+    
+    def isExits(self):
+        if Customer.objects.filter(email = self.email):
+            return True
+        else:
+            return False
